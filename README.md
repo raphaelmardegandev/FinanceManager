@@ -1,0 +1,1 @@
+# FinanceManager Starter\n\nMódulo Categories funcionando com SQLite e Swagger.
