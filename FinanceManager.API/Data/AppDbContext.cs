@@ -12,6 +12,8 @@ public class AppDbContext : DbContext
 
     public DbSet<Category> Categories => Set<Category>();
     public DbSet<User> Users => Set<User>();
+    public DbSet<Account> Accounts => Set<Account>();
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Category>(entity =>
@@ -59,28 +61,49 @@ public class AppDbContext : DbContext
         modelBuilder.Entity<User>(entity =>
         {
             entity.HasKey(x => x.Id);
-        
+
             entity.Property(x => x.Name)
                 .IsRequired()
                 .HasMaxLength(150);
-        
+
             entity.Property(x => x.Email)
                 .IsRequired()
                 .HasMaxLength(150);
-        
+
             entity.Property(x => x.PasswordHash)
                 .IsRequired();
+
+            entity.Property(x => x.Active)
+                .IsRequired();
+
+            entity.Property(x => x.CreatedAt)
+                .IsRequired();
+
+            entity.HasIndex(x => x.Email)
+                .IsUnique();
+        });
+
+        modelBuilder.Entity<Account>(entity =>
+        {
+            entity.HasKey(x => x.Id);
+        
+            entity.Property(x => x.Name)
+                .IsRequired()
+                .HasMaxLength(100);
+        
+            entity.Property(x => x.Type)
+                .IsRequired();
+        
+            entity.Property(x => x.InitialBalance)
+                .HasPrecision(18, 2);
         
             entity.Property(x => x.Active)
                 .IsRequired();
         
             entity.Property(x => x.CreatedAt)
                 .IsRequired();
-        
-            entity.HasIndex(x => x.Email)
-                .IsUnique();
         });
-        
+
         base.OnModelCreating(modelBuilder);
     }
 }
