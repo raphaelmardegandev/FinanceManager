@@ -595,3 +595,80 @@ form {
     background: #f3f4f6;
     border-color: #9ca3af;
 }
+
+.account-balance {
+    font-weight: 600;
+    color: #1f2937;
+}
+
+.account-status {
+    display: inline-block;
+    padding: 5px 9px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.account-status.active {
+    background: #e8f5ed;
+    color: #16803c;
+}
+
+.account-status.inactive {
+    background: #fbe9e7;
+    color: #c0392b;
+}
+
+.actions-column {
+    text-align: center;
+    width: 220px;
+}
+
+.table-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+}
+
+.action-button {
+    background: #ffffff;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+    min-width: 72px;
+    text-align: center;
+}
+
+.action-button.edit {
+    border: 1px solid #2563eb;
+    color: #2563eb;
+}
+
+.action-button.edit:hover {
+    background: #2563eb;
+    color: #ffffff;
+}
+
+.action-button.activate {
+    border: 1px solid #16803c;
+    color: #16803c;
+}
+
+.action-button.activate:hover {
+    background: #16803c;
+    color: #ffffff;
+}
+
+.action-button.danger {
+    border: 1px solid #c0392b;
+    color: #c0392b;
+}
+
+.action-button.danger:hover {
+    background: #c0392b;
+    color: #ffffff;
+}
