@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -46,7 +47,7 @@
                     <span>Despesas</span>
                 </a>
 
-                <a href="#" class="nav-item">
+                <a href="/categories.html" class="nav-item">
                     <span>Categorias</span>
                 </a>
 
@@ -92,9 +93,7 @@
 
                     </div>
 
-                    <button
-                        class="logout-button"
-                        onclick="logout()">
+                    <button class="logout-button" onclick="logout()">
                         Sair
                     </button>
 
@@ -113,9 +112,7 @@
                             <p>Contas cadastradas no sistema</p>
                         </div>
 
-                        <button
-                            class="primary-button"
-                            onclick="openAccountModal()">
+                        <button class="primary-button" onclick="openAccountModal()">
                             Nova conta
                         </button>
 
@@ -138,9 +135,7 @@
                             <tbody id="accountsTable">
 
                                 <tr>
-                                    <td
-                                        colspan="5"
-                                        class="loading">
+                                    <td colspan="5" class="loading">
 
                                         Carregando contas...
 
@@ -178,9 +173,7 @@
                     </p>
                 </div>
 
-                <button
-                    class="close-button"
-                    onclick="closeAccountModal()">
+                <button class="close-button" onclick="closeAccountModal()">
                     ×
                 </button>
 
@@ -188,9 +181,7 @@
 
             <form id="accountForm">
 
-                <input
-                    type="hidden"
-                    id="accountId">
+                <input type="hidden" id="accountId">
 
                 <div class="form-group">
 
@@ -198,11 +189,7 @@
                         Nome
                     </label>
 
-                    <input
-                        id="accountName"
-                        type="text"
-                        maxlength="100"
-                        required>
+                    <input id="accountName" type="text" maxlength="100" required>
 
                 </div>
 
@@ -212,9 +199,7 @@
                         Tipo
                     </label>
 
-                    <select
-                        id="accountType"
-                        required>
+                    <select id="accountType" required>
 
                         <option value="1">
                             Conta corrente
@@ -246,29 +231,19 @@
                         Saldo inicial
                     </label>
 
-                    <input
-                        id="accountInitialBalance"
-                        type="number"
-                        step="0.01"
-                        value="0"
-                        required>
+                    <input id="accountInitialBalance" type="number" step="0.01" value="0" required>
 
                 </div>
 
                 <div class="modal-actions">
 
-                    <button
-                        type="button"
-                        class="secondary-button"
-                        onclick="closeAccountModal()">
+                    <button type="button" class="secondary-button" onclick="closeAccountModal()">
 
                         Cancelar
 
                     </button>
 
-                    <button
-                        type="submit"
-                        class="primary-button">
+                    <button type="submit" class="primary-button">
 
                         Salvar conta
 
@@ -285,4 +260,5 @@
     <script src="/js/accounts.js"></script>
 
 </body>
+
 </html>

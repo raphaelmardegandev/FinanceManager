@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,8 +18,8 @@
 
             <div class="brand">
                 <!-- <div class="brand-icon">F</div> -->
-                 <div class="brand-icon">
-                     <img src="/img/logo-fm.png" alt="FinanceManager">
+                <div class="brand-icon">
+                    <img src="/img/logo-fm.png" alt="FinanceManager">
                 </div>
                 <div>
                     <strong>FinanceManager</strong>
@@ -44,7 +45,7 @@
                     <span>Despesas</span>
                 </a>
 
-                <a href="#" class="nav-item">
+                <a href="/categories.html" class="nav-item">
                     <span>Categorias</span>
                 </a>
 
@@ -71,19 +72,19 @@
                 </div>
 
                 <div class="user-area">
-    <div class="user">
-        <div id="userAvatar" class="user-avatar">U</div>
+                    <div class="user">
+                        <div id="userAvatar" class="user-avatar">U</div>
 
-        <div>
-            <strong id="userName">Usuário</strong>
-            <span id="userEmail">Minha conta</span>
-        </div>
-    </div>
+                        <div>
+                            <strong id="userName">Usuário</strong>
+                            <span id="userEmail">Minha conta</span>
+                        </div>
+                    </div>
 
-    <button class="logout-button" onclick="logout()">
-        Sair
-    </button>
-</div>
+                    <button class="logout-button" onclick="logout()">
+                        Sair
+                    </button>
+                </div>
 
             </header>
 
@@ -142,8 +143,7 @@
                                 <p>Categorias cadastradas no sistema</p>
                             </div>
 
-                            <button class="primary-button"
-                                    onclick="openCategoryModal()">
+                            <button class="primary-button" onclick="openCategoryModal()">
                                 Nova categoria
                             </button>
 
@@ -236,8 +236,7 @@
                     <p>Cadastre uma nova categoria financeira</p>
                 </div>
 
-                <button class="close-button"
-                        onclick="closeCategoryModal()">
+                <button class="close-button" onclick="closeCategoryModal()">
                     ×
                 </button>
 
@@ -251,12 +250,7 @@
                         Nome
                     </label>
 
-                    <input
-                        id="categoryName"
-                        type="text"
-                        maxlength="100"
-                        required
-                    >
+                    <input id="categoryName" type="text" maxlength="100" required>
 
                 </div>
 
@@ -266,10 +260,7 @@
                         Descrição
                     </label>
 
-                    <textarea
-                        id="categoryDescription"
-                        maxlength="500"
-                    ></textarea>
+                    <textarea id="categoryDescription" maxlength="500"></textarea>
 
                 </div>
 
@@ -295,16 +286,11 @@
 
                 <div class="modal-actions">
 
-                    <button
-                        type="button"
-                        class="secondary-button"
-                        onclick="closeCategoryModal()">
+                    <button type="button" class="secondary-button" onclick="closeCategoryModal()">
                         Cancelar
                     </button>
 
-                    <button
-                        type="submit"
-                        class="primary-button">
+                    <button type="submit" class="primary-button">
                         Salvar categoria
                     </button>
 
@@ -319,4 +305,5 @@
     <script src="/js/app.js"></script>
 
 </body>
+
 </html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Categorias - FinanceManager</title>
+
+    <link rel="stylesheet" href="/css/app.css">
+</head>
+
+<body>
+
+    <div class="app">
+
+        <aside class="sidebar">
+
+            <div class="brand">
+
+                <div class="brand-icon">
+                    <img src="/img/logo-fm.png" alt="FinanceManager">
+                </div>
+
+                <div>
+                    <strong>FinanceManager</strong>
+                    <span>Personal Finance</span>
+                </div>
+
+            </div>
+
+            <nav class="navigation">
+
+                <a href="/index.html" class="nav-item">
+                    <span>Dashboard</span>
+                </a>
+
+                <a href="/accounts.html" class="nav-item">
+                    <span>Contas</span>
+                </a>
+
+                <a href="#" class="nav-item">
+                    <span>Receitas</span>
+                </a>
+
+                <a href="#" class="nav-item">
+                    <span>Despesas</span>
+                </a>
+
+                <a href="/categories.html" class="nav-item active">
+                    <span>Categorias</span>
+                </a>
+
+                <a href="#" class="nav-item">
+                    <span>Relatórios</span>
+                </a>
+
+            </nav>
+
+            <div class="sidebar-footer">
+                <span>FinanceManager</span>
+                <small>v0.1.0</small>
+            </div>
+
+        </aside>
+
+        <main class="main">
+
+            <header class="topbar">
+
+                <div>
+                    <h1>Categorias</h1>
+                    <p>Gerencie suas categorias de receitas e despesas</p>
+                </div>
+
+                <div class="user-area">
+
+                    <div class="user">
+
+                        <div id="userAvatar" class="user-avatar">
+                            U
+                        </div>
+
+                        <div>
+                            <strong id="userName">
+                                Usuário
+                            </strong>
+
+                            <span id="userEmail">
+                                Minha conta
+                            </span>
+                        </div>
+
+                    </div>
+
+                    <button class="logout-button" onclick="logout()">
+                        Sair
+                    </button>
+
+                </div>
+
+            </header>
+
+            <section class="content">
+
+                <section class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <h2>Minhas categorias</h2>
+                            <p>Categorias cadastradas no sistema</p>
+                        </div>
+
+                        <button class="primary-button" onclick="openCategoryModal()">
+                            Nova categoria
+                        </button>
+
+                    </div>
+
+                    <div class="table-container">
+
+                        <table>
+
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Descrição</th>
+                                    <th>Tipo</th>
+                                    <th>Status</th>
+                                    <th class="actions-column">Ações</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="categoriesTable">
+                                <tr>
+                                    <td colspan="5" class="loading">
+                                        Carregando categorias...
+                                    </td>
+                                </tr>
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </section>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <div id="categoryModal" class="modal hidden">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <div>
+                    <h2 id="categoryModalTitle">Nova categoria</h2>
+                    <p>Cadastre uma categoria financeira</p>
+                </div>
+
+                <button class="close-button" onclick="closeCategoryModal()">
+                    ×
+                </button>
+
+            </div>
+
+            <form id="categoryForm">
+
+                <input type="hidden" id="categoryId">
+
+                <div class="form-group">
+                    <label for="categoryName">Nome</label>
+
+                    <input id="categoryName" type="text" maxlength="100" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="categoryDescription">Descrição</label>
+
+                    <textarea id="categoryDescription" maxlength="500">
+                </textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="categoryType">Tipo</label>
+
+                    <select id="categoryType" required>
+                        <option value="1">Receita</option>
+                        <option value="2">Despesa</option>
+                    </select>
+                </div>
+
+                <div class="modal-actions">
+
+                    <button type="button" class="secondary-button" onclick="closeCategoryModal()">
+                        Cancelar
+                    </button>
+
+                    <button type="submit" class="primary-button">
+                        Salvar categoria
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <script src="/js/categories.js"></script>
+    
+</body>
+
+</html>
