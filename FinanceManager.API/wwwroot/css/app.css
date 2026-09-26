@@ -672,3 +672,27 @@ form {
     background: #c0392b;
     color: #ffffff;
 }
+
+.transaction-filters {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.transaction-filters select {
+    min-width: 180px;
+    padding: 9px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    background: #ffffff;
+}
+
+.transaction-income {
+    color: #16803c;
+    font-weight: 700;
+}
+
+.transaction-expense {
+    color: #c0392b;
+    font-weight: 700;
+}

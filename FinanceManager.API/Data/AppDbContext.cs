@@ -13,6 +13,7 @@ public class AppDbContext : DbContext
     public DbSet<Category> Categories => Set<Category>();
     public DbSet<User> Users => Set<User>();
     public DbSet<Account> Accounts => Set<Account>();
+    public DbSet<Transaction> Transactions => Set<Transaction>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -86,22 +87,66 @@ public class AppDbContext : DbContext
         modelBuilder.Entity<Account>(entity =>
         {
             entity.HasKey(x => x.Id);
-        
+
             entity.Property(x => x.Name)
                 .IsRequired()
                 .HasMaxLength(100);
-        
+
             entity.Property(x => x.Type)
                 .IsRequired();
-        
+
             entity.Property(x => x.InitialBalance)
                 .HasPrecision(18, 2);
-        
+
             entity.Property(x => x.Active)
                 .IsRequired();
-        
+
             entity.Property(x => x.CreatedAt)
                 .IsRequired();
+        });
+
+        modelBuilder.Entity<Transaction>(entity =>
+        {
+            entity.HasKey(x => x.Id);
+
+            entity.Property(x => x.Description)
+                .IsRequired()
+                .HasMaxLength(200);
+
+            entity.Property(x => x.Amount)
+                .HasPrecision(18, 2)
+                .IsRequired();
+
+            entity.Property(x => x.Date)
+                .IsRequired();
+
+            entity.Property(x => x.Type)
+                .IsRequired();
+
+            entity.Property(x => x.AccountId)
+                .IsRequired();
+
+            entity.Property(x => x.CategoryId)
+                .IsRequired();
+
+            entity.Property(x => x.Notes)
+                .HasMaxLength(500);
+
+            entity.Property(x => x.Active)
+                .IsRequired();
+
+            entity.Property(x => x.CreatedAt)
+                .IsRequired();
+
+            entity.HasOne(x => x.Account)
+                .WithMany()
+                .HasForeignKey(x => x.AccountId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            entity.HasOne(x => x.Category)
+                .WithMany()
+                .HasForeignKey(x => x.CategoryId)
+                .OnDelete(DeleteBehavior.Restrict);
         });
 
         base.OnModelCreating(modelBuilder);
