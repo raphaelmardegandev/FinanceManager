@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Relatórios - FinanceManager</title>
+
+    <link rel="stylesheet" href="/css/app.css">
+</head>
+
+<body>
+
+    <div class="app-layout">
+
+        <aside class="sidebar">
+
+            <div class="brand">
+
+                <div class="brand-icon">
+                    <img src="/img/logo-fm.png" alt="FinanceManager">
+                </div>
+
+                <div>
+                    <strong>FinanceManager</strong>
+                    <span>Personal Finance</span>
+                </div>
+
+            </div>
+
+            <nav class="navigation">
+
+                <a href="/index.html" class="nav-item">
+                    <span>Dashboard</span>
+                </a>
+
+                <a href="/accounts.html" class="nav-item">
+                    <span>Contas</span>
+                </a>
+
+                <a href="/categories.html" class="nav-item">
+                    <span>Categorias</span>
+                </a>
+
+                <a href="/transactions.html" class="nav-item">
+                    <span>Transações</span>
+                </a>
+
+                <a href="#" class="nav-item active">
+                    <span>Relatórios</span>
+                </a>
+
+            </nav>
+
+            <div class="sidebar-footer">
+                <span>FinanceManager</span>
+                <small>v0.1.0</small>
+            </div>
+
+        </aside>
+
+        <main class="main">
+
+            <header class="topbar">
+
+                <div>
+                    <h1>Relatórios</h1>
+                    <p>Consulte e analise suas movimentações financeiras</p>
+                </div>
+
+                <div class="user-area">
+
+                    <div class="user">
+
+                        <div id="userAvatar" class="user-avatar">
+                            U
+                        </div>
+
+                        <div>
+                            <strong id="userName">
+                                Usuário
+                            </strong>
+
+                            <span id="userEmail">
+                                Minha conta
+                            </span>
+                        </div>
+
+                    </div>
+
+                    <button class="logout-button" onclick="logout()">
+                        Sair
+                    </button>
+
+                </div>
+
+            </header>
+
+
+            <section class="content">
+
+                <!-- Filtros -->
+                <section class="panel reports-filter-panel">
+                    <div class="panel-header">
+                        <div>
+                            <h2>Filtros do relatório</h2>
+                            <p>Selecione os critérios para consultar suas movimentações</p>
+                        </div>
+                    </div>
+
+                    <form id="reportFilters" class="reports-filter-grid">
+
+                        <div class="reports-filter-field">
+                            <label for="reportStartDate">Data inicial</label>
+                            <input type="date" id="reportStartDate">
+                        </div>
+
+                        <div class="reports-filter-field">
+                            <label for="reportEndDate">Data final</label>
+                            <input type="date" id="reportEndDate">
+                        </div>
+
+                        <div class="reports-filter-field">
+                            <label for="reportType">Tipo</label>
+                            <select id="reportType">
+                                <option value="">Todos</option>
+                                <option value="1">Receitas</option>
+                                <option value="2">Despesas</option>
+                            </select>
+                        </div>
+
+                        <div class="reports-filter-field">
+                            <label for="reportAccount">Conta</label>
+                            <select id="reportAccount">
+                                <option value="">Todas as contas</option>
+                            </select>
+                        </div>
+
+                        <div class="reports-filter-field">
+                            <label for="reportCategory">Categoria</label>
+                            <select id="reportCategory">
+                                <option value="">Todas as categorias</option>
+                            </select>
+                        </div>
+
+                        <div class="reports-filter-actions">
+                            <button type="button" id="clearReportFilters" class="report-secondary-button">
+                                Limpar
+                            </button>
+
+                            <button type="submit" class="report-primary-button">
+                                Filtrar
+                            </button>
+                        </div>
+
+                    </form>
+                </section>
+
+                <!-- Indicadores -->
+                <div class="summary-grid reports-summary-grid">
+
+                    <div class="summary-card">
+                        <span class="summary-label">Receitas do período</span>
+                        <strong id="reportTotalIncome" class="summary-value income">R$ 0,00</strong>
+                        <span class="summary-description">Total de entradas</span>
+                    </div>
+
+                    <div class="summary-card">
+                        <span class="summary-label">Despesas do período</span>
+                        <strong id="reportTotalExpense" class="summary-value expense">R$ 0,00</strong>
+                        <span class="summary-description">Total de saídas</span>
+                    </div>
+
+                    <div class="summary-card">
+                        <span class="summary-label">Resultado do período</span>
+                        <strong id="reportBalance" class="summary-value">R$ 0,00</strong>
+                        <span class="summary-description">Receitas menos despesas</span>
+                    </div>
+
+                    <div class="summary-card">
+                        <span class="summary-label">Transações</span>
+                        <strong id="reportTransactionCount" class="summary-value">0</strong>
+                        <span class="summary-description">Registros encontrados</span>
+                    </div>
+
+                </div>
+
+                <!-- Listagem -->
+                <section class="panel">
+
+                    <div class="panel-header">
+                        <div>
+                            <h2>Movimentações financeiras</h2>
+                            <p>Transações correspondentes aos filtros selecionados</p>
+                        </div>
+
+                        <div class="report-export-actions">
+                            <button type="button" id="exportReportCsv" class="report-secondary-button">
+                                Exportar CSV
+                            </button>
+
+                            <button type="button" id="exportReportPdf" class="report-secondary-button">
+                                Exportar PDF
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Data</th>
+                                    <th>Descrição</th>
+                                    <th>Conta</th>
+                                    <th>Categoria</th>
+                                    <th>Tipo</th>
+                                    <th>Valor</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="reportTransactionsTable">
+                                <tr>
+                                    <td colspan="6" class="loading">
+                                        Carregando relatório...
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </section>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <div id="transactionModal" class="modal hidden">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <div>
+                    <h2 id="transactionModalTitle">
+                        Nova transação
+                    </h2>
+                    <p>Cadastre uma movimentação financeira</p>
+                </div>
+
+                <button class="close-button" onclick="closeTransactionModal()">
+                    ×
+                </button>
+
+            </div>
+
+            <form id="transactionForm">
+
+                <input type="hidden" id="transactionId">
+
+                <div class="form-group">
+                    <label for="transactionType">Tipo</label>
+
+                    <select id="transactionType" required>
+                        <option value="1">Receita</option>
+                        <option value="2">Despesa</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="transactionDescription">
+                        Descrição
+                    </label>
+
+                    <input id="transactionDescription" type="text" maxlength="200" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="transactionAmount">
+                        Valor
+                    </label>
+
+                    <input id="transactionAmount" type="number" min="0.01" step="0.01" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="transactionDate">
+                        Data
+                    </label>
+
+                    <input id="transactionDate" type="date" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="transactionAccount">
+                        Conta
+                    </label>
+
+                    <select id="transactionAccount" required>
+                        <option value="">Selecione uma conta</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="transactionCategory">
+                        Categoria
+                    </label>
+
+                    <select id="transactionCategory" required>
+                        <option value="">
+                            Selecione uma categoria
+                        </option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="transactionNotes">
+                        Observação
+                    </label>
+
+                    <textarea id="transactionNotes" maxlength="500"></textarea>
+                </div>
+
+                <div class="modal-actions">
+
+                    <button type="button" class="secondary-button" onclick="closeTransactionModal()">
+                        Cancelar
+                    </button>
+
+                    <button type="submit" class="primary-button">
+                        Salvar transação
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <script src="/js/reports.js"></script>
+
+</body>
+
+</html>
