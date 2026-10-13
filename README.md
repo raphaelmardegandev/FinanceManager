@@ -91,15 +91,53 @@ dotnet restore FinanceManager.API/FinanceManager.API.csproj
 
 ### 3. Configurar o ambiente
 
-Configure a conexão com o SQLite e a chave JWT utilizada pela aplicação.
+O FinanceManager utiliza SQLite como banco de dados e JWT para autenticação.
 
-Para desenvolvimento local, utilize o arquivo `appsettings.Development.json`, variáveis de ambiente ou .NET User Secrets.
+A conexão com o SQLite já está configurada no arquivo `appsettings.json`. A chave JWT deve ser configurada localmente utilizando o **.NET User Secrets**, sem armazená-la no repositório.
 
-Não utilize chaves de produção ou informações sensíveis em arquivos versionados.
+**Gerar uma chave JWT segura**
+
+No PowerShell, execute:
+
+```powershell
+$rng = [System.Security.Cryptography.RandomNumberGenerator]::Create()
+$bytes = New-Object byte[] 64
+$rng.GetBytes($bytes)
+$jwtKey = [Convert]::ToBase64String($bytes)
+```
+
+**Armazenar a chave no User Secrets**
+
+Na raiz do projeto, execute:
+
+```powershell
+dotnet user-secrets set "Jwt:Key" "$jwtKey" --project FinanceManager.API/FinanceManager.API.csproj
+```
+
+**Limpar as variáveis temporárias**
+
+```powershell
+$rng.Dispose()
+Remove-Variable rng, bytes, jwtKey
+```
+
+O identificador do User Secrets já está configurado no arquivo `FinanceManager.API.csproj`.
+
+**Importante:**
+
+- Nunca armazene a chave JWT em arquivos versionados.
+- Cada desenvolvedor deve gerar sua própria chave.
+- O User Secrets é destinado ao desenvolvimento local.
+- Em produção, utilize variáveis de ambiente protegidas ou um gerenciador de segredos.
 
 ### 4. Executar a aplicação
 
-```bash
+No PowerShell, execute:
+
+```powershell
+$env:ASPNETCORE_ENVIRONMENT = "Development"
+$env:DOTNET_ENVIRONMENT = "Development"
+
 dotnet run --project FinanceManager.API/FinanceManager.API.csproj
 ```
 
