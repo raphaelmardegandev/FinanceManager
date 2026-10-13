@@ -776,3 +776,120 @@ form {
     font-size: 13px;
     text-align: center;
 }
+
+
+/* Relatórios */
+
+.reports-filter-panel {
+    margin-bottom: 20px;
+}
+
+.reports-filter-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.reports-filter-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.reports-filter-field label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #444;
+}
+
+.reports-filter-field input,
+.reports-filter-field select {
+    width: 100%;
+    height: 40px;
+    padding: 0 12px;
+    border: 1px solid #d6d6d6;
+    border-radius: 6px;
+    background: #fff;
+    color: #333;
+    font-size: 13px;
+    box-sizing: border-box;
+}
+
+.reports-filter-field input:focus,
+.reports-filter-field select:focus {
+    outline: none;
+    border-color: #6d5dfc;
+}
+
+.reports-filter-actions {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.report-primary-button,
+.report-secondary-button {
+    height: 40px;
+    padding: 0 18px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.report-primary-button {
+    background: #6d5dfc;
+    border: 1px solid #6d5dfc;
+    color: #fff;
+}
+
+.report-primary-button:hover {
+    background: #5848df;
+}
+
+.report-secondary-button {
+    background: #fff;
+    border: 1px solid #6d5dfc;
+    color: #6d5dfc;
+}
+
+.report-secondary-button:hover {
+    background: #6d5dfc;
+    color: #fff;
+}
+
+.reports-summary-grid {
+    margin-bottom: 20px;
+}
+
+@media (max-width: 1000px) {
+    .reports-filter-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    .reports-filter-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .reports-filter-actions {
+        justify-content: stretch;
+    }
+
+    .reports-filter-actions button {
+        flex: 1;
+    }
+}
+.report-export-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.report-export-actions button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
